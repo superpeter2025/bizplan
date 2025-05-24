@@ -13,21 +13,21 @@ questions = [
     "Price of your product",
     "Revenue target for the first year"
 ]
-keys = ["product_description", "target_market", "price", "revenue_target"]
 
 # Display each question progressively
 for i in range(len(questions)):
     if i <= st.session_state["completed_steps"]:
         # Show the question and text input
-        response = st.text_area(questions[i], max_chars=300, key=f"input_{i}") if i < 2 else st.text_input(questions[i], key=f"input_{i}")
+        if i < 2:
+            response = st.text_area(questions[i], max_chars=300, key=f"input_{i}")
+        else:
+            response = st.text_input(questions[i], key=f"input_{i}")
 
-        # Next button for each question
-        if st.button(f"Next {i + 1}", key=f"next_{i}"):
-            if response.strip():  # Ensure response is not empty
-                st.session_state["responses"][i] = response
-                st.session_state["completed_steps"] += 1
-            else:
-                st.warning("Please fill in the field before proceeding.")
+        # The Next button is disabled unless the response is non-empty and non-whitespace
+        next_disabled = not bool(response and response.strip())
+        if st.button(f"Next {i + 1}", key=f"next_{i}", disabled=next_disabled):
+            st.session_state["responses"][i] = response
+            st.session_state["completed_steps"] += 1
 
 # Submit button after all questions are answered
 if st.session_state["completed_steps"] == len(questions):
@@ -97,7 +97,7 @@ if st.session_state["completed_steps"] == len(questions):
         How many impression would you need to make per week?
 
         5. Marketing and Sales Plan:
-        To achieve our revenue target, we plan to implement a comprehensive marketing strategy, leveraging social media, email campaigns, and partnerships with influencers to reach our target audience.
+        To achieve our revenue target, we plan to implement a comprehensive marketing strategy, leveraging social media, email campaigns, and partnerships with influencers to reach our target audience[...]
 
         MARKETING PLAN
         ==============
@@ -158,11 +158,11 @@ if st.session_state["completed_steps"] == len(questions):
 
         SALES PROCESS
 
-        RAPPORT BUILDING: .................................
-        NEEDS ASSESSMENT; .................................
-        PRESENTATION: .....................................
-        OBJECTIONS HANDLING: ..............................
-        CLOSING: ..........................................
+        RAPPORT BUILDING: ................................. 
+        NEEDS ASSESSMENT; ................................. 
+        PRESENTATION: ..................................... 
+        OBJECTIONS HANDLING: .............................. 
+        CLOSING: .......................................... 
 
         CRM SYSTEM
         ==========
@@ -209,7 +209,7 @@ if st.session_state["completed_steps"] == len(questions):
         .....................................
 
         7. Financial Plan:
-        With the price point of {price}, our target market size, and a solid marketing strategy, we aim to achieve our revenue target of {revenue_target} in the first year while maintaining healthy profit margins.
+        With the price point of {price}, our target market size, and a solid marketing strategy, we aim to achieve our revenue target of {revenue_target} in the first year while maintaining healthy pr[...]
 
         8. Conclusion:
         This business plan outlines our roadmap for launching and growing our product in the market, driven by a clear understanding of our product, target audience, pricing, and revenue goals.
