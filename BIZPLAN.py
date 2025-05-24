@@ -99,8 +99,27 @@ if st.session_state["completed_steps"] == len(questions):
         5. Marketing and Sales Plan:
         To achieve our revenue target, we plan to implement a comprehensive marketing strategy, leveraging social media, email campaigns, and partnerships with influencers to reach our target audience.
 
+        MARKETING PLAN
+
+        ...................................................
+        ...................................................
+
+        SALES PROCESS
+
+        ...................................................
+        ...................................................
+
         6. Operations Plan:
         Our focus is on ensuring a seamless supply chain and excellent customer service to drive satisfaction and repeat purchases.
+
+        QUALITY ASSURANCE
+        .........................
+
+        QUALITY CONTROL
+        .........................
+
+        CUSTOMER SERVICE
+        .........................
 
         7. Financial Plan:
         With the price point of {price}, our target market size, and a solid marketing strategy, we aim to achieve our revenue target of {revenue_target} in the first year while maintaining healthy profit margins.
